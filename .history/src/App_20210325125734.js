@@ -2,9 +2,6 @@ import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import { useState, useEffect } from "react";
 import AddTask from "./components/AddTask";
-import Footer from "./components/Footer";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import About from "./components/About";
 
 function App() {
   const [showAddTask, setShowAddTask] = useState(true);
@@ -25,7 +22,7 @@ function App() {
     return data;
   };
 
-  // Fetch SINGLE Task
+  // Fetch Task
   const fetchTask = async (id) => {
     const res = await fetch(`http://localhost:5000/tasks/${id}`);
     const data = await res.json();
@@ -79,31 +76,19 @@ function App() {
   };
 
   return (
-    <Router>
-      <div className="container">
-        <Header onAdd={() => setShowAddTask(!showAddTask)}></Header>
-        <Route
-          path="/"
-          exact
-          render={(props) => (
-            <>
-              {showAddTask && <AddTask onAdd={addTask}></AddTask>}
-              {tasks.length > 0 ? (
-                <Tasks
-                  tasks={tasks}
-                  onToggle={toggleReminder}
-                  onDelete={deleteTask}
-                ></Tasks>
-              ) : (
-                "No Tasks to Show."
-              )}
-            </>
-          )}
-        ></Route>
-        <Route path="/about" component={About}></Route>
-        <Footer></Footer>
-      </div>
-    </Router>
+    <div className="container">
+      <Header onAdd={() => setShowAddTask(!showAddTask)}></Header>
+      {showAddTask && <AddTask onAdd={addTask}></AddTask>}
+      {tasks.length > 0 ? (
+        <Tasks
+          tasks={tasks}
+          onToggle={toggleReminder}
+          onDelete={deleteTask}
+        ></Tasks>
+      ) : (
+        "No Tasks to Show."
+      )}
+    </div>
   );
 }
 

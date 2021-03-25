@@ -82,25 +82,17 @@ function App() {
     <Router>
       <div className="container">
         <Header onAdd={() => setShowAddTask(!showAddTask)}></Header>
-        <Route
-          path="/"
-          exact
-          render={(props) => (
-            <>
-              {showAddTask && <AddTask onAdd={addTask}></AddTask>}
-              {tasks.length > 0 ? (
-                <Tasks
-                  tasks={tasks}
-                  onToggle={toggleReminder}
-                  onDelete={deleteTask}
-                ></Tasks>
-              ) : (
-                "No Tasks to Show."
-              )}
-            </>
-          )}
-        ></Route>
-        <Route path="/about" component={About}></Route>
+        {showAddTask && <AddTask onAdd={addTask}></AddTask>}
+        {tasks.length > 0 ? (
+          <Tasks
+            tasks={tasks}
+            onToggle={toggleReminder}
+            onDelete={deleteTask}
+          ></Tasks>
+        ) : (
+          "No Tasks to Show."
+        )}
+        <Route path="/about" component={About}
         <Footer></Footer>
       </div>
     </Router>

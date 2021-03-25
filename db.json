@@ -1,0 +1,16 @@
+{
+  "tasks": [
+    {
+      "text": "A task for a poor man please.",
+      "day": "maybe today.",
+      "reminder": true,
+      "id": 1
+    },
+    {
+      "text": "A true task plaaaees",
+      "day": "tomorrow",
+      "reminder": false,
+      "id": 2
+    }
+  ]
+}
